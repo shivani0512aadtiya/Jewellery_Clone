@@ -13,7 +13,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <UserContextProvider>{children}</UserContextProvider>
+        {children}
+        {/* <UserContextProvider>{children}</UserContextProvider> */}
       </body>
     </html>
   );

@@ -1,8 +1,10 @@
 "use client";
+import MainLayout from "@/AdminPenal/MainLayout";
 import UserContext from "@/context/UserContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 const Page = () => {
   const [imageUpload, setImageUpload] = useState([]);
@@ -20,15 +22,14 @@ const Page = () => {
   const [msg, setMsg] = useState(null);
   const router = useRouter();
 
-  const { logout } = useContext(UserContext);
 
   const Logout = async () => {
-    await logout();
+    await Cookies.remove('token')
     router.push('/adminlogin');
   };
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
+    const storedToken = Cookies.get("token");
     if (!storedToken) {
       console.log("Token Not Found");
     } else {
@@ -99,6 +100,7 @@ const Page = () => {
   
 
   return (
+    <MainLayout>
     <div>
       <button onClick={Logout}>LogOut</button>
       <div className="p-4 flex justify-center items-center">
@@ -267,6 +269,7 @@ const Page = () => {
         </div>
       </div>
     </div>
+    </MainLayout>
   );
 };
 

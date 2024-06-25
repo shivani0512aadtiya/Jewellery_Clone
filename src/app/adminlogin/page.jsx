@@ -1,20 +1,24 @@
 "use client";
 import UserContext from "@/context/UserContext";
 import axios from "axios";
+import { Cookie } from "next/font/google";
 import { useRouter } from "next/navigation";
 import React, { useContext, useState } from "react";
 import { CiUser } from "react-icons/ci";
 import { RiLockPasswordLine } from "react-icons/ri";
+import Cookies from "js-cookie";
 
 
 const page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
 
   const router = useRouter()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true)
     alert("Hello")
     try {
       const response = await axios.post(
@@ -29,12 +33,15 @@ const page = () => {
           },
         }
       );
-      localStorage.setItem("token", response.data.token);
+      // localStorage.setItem("token", response.data.token);
+      Cookies.set('token', response.data.token, { expires: 7 });
       console.log(response.data)
       router.push('/add-jewellery')
       
     } catch (error) {
       console.log(error);
+    }finally{
+      setIsLoading(false)
     }
   };
 
@@ -67,8 +74,8 @@ const page = () => {
             className="pl-8 p-2 w-full outline-none rounded-md bg-gray-700 text-white placeholder-gray-400"
           />
         </div>
-        <button className="bg-green-500 w-full p-2 rounded-md text-white hover:bg-green-600">
-          Login
+        <button disabled={isLoading} className="bg-green-500 w-full p-2 rounded-md text-white hover:bg-green-600">
+        {isLoading ? "Isloading..." : "Login"}
         </button>
       </form>
     </div>

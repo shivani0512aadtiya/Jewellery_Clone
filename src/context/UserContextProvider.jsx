@@ -1,17 +1,19 @@
 'use client'
 import React, { useEffect, useState } from "react";
 import UserContext from "./UserContext";
+import Cookies from "js-cookie";
 
 const UserContextProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        // const token = localStorage.getItem("token");
+        const token = Cookies.get('token')
         setIsLoggedIn(!!token);
     }, []);
 
     const logout = () => {
-        localStorage.removeItem('token');
+        Cookies.remove('token')
         setIsLoggedIn(false);
     };
 
