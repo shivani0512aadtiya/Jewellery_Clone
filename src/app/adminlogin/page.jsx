@@ -1,12 +1,10 @@
 "use client";
-import UserContext from "@/context/UserContext";
-import axios from "axios";
-import { Cookie } from "next/font/google";
 import { useRouter } from "next/navigation";
 import React, { useContext, useState } from "react";
 import { CiUser } from "react-icons/ci";
 import { RiLockPasswordLine } from "react-icons/ri";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 
 const page = () => {
@@ -18,32 +16,28 @@ const page = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true)
-    alert("Hello")
+    setIsLoading(true);
+  
     try {
-      const response = await axios.post(
-        "https://jewellery-yttl.onrender.com/adminlogin",
-        {
-          email: email,
-          password: password,
+      const response = await axios.post("https://jewellery-yttl.onrender.com/adminlogin", {
+        email: email,
+        password: password,
+      }, {
+        headers: {
+          "Content-Type": "application/json",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      // localStorage.setItem("token", response.data.token);
-      Cookies.set('token', response.data.token, { expires: 7 });
-      console.log(response.data)
-      router.push('/add-jewellery')
-      
+      });
+  
+      const data = response.data;
+      Cookies.set('token', data.token, { expires: 7 });
+      router.push('/profile');
     } catch (error) {
       console.log(error);
-    }finally{
-      setIsLoading(false)
+    } finally {
+      setIsLoading(false);
     }
   };
+  
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-900">

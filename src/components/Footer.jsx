@@ -25,7 +25,9 @@ const Footer = () => {
           <li className="py-2 cursor-pointer">About</li>
           <li className="py-2 cursor-pointer">Help & FAQ</li>
           <li className="py-2 cursor-pointer">
-            <Link href={"/adminlogin"}>Admin Panel</Link>
+            <Link href={{
+              pathname:'/adminlogin'
+            }}>Admin Panel</Link>
           </li>
         </ul>
         <ul>

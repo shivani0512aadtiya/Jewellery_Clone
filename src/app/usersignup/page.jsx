@@ -26,7 +26,6 @@ const page = () => {
 
   return (
     <>
-    <Header />
     <div className="flex justify-center items-center pt-14">
     <div className="relative w-96 h-auto p-14 bg-slate-100 border border-solid">
       <h1 className="text-center font-semibold pb-10 text-xl">User Sign-Up</h1>
@@ -67,7 +66,6 @@ const page = () => {
         </p>
     </div>
   </div>
-  <Footer />
   </>
   )
 }

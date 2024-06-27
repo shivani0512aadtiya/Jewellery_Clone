@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
@@ -27,7 +27,9 @@ const Header = () => {
           </div>
         </div>
         <div className="flex lg:space-x-16 md:space-x-12 sm:space-x-10 xs:space-x-6 md:mt-0 xs:mt-3 xs:justify-center xs:items-center">
-          <Link href={'/userlogin'}>
+          <Link href={{
+            pathname:'/userlogin'
+          }}>
             <div className="pl-4">
               <FaRegUser size={22} />
             </div>

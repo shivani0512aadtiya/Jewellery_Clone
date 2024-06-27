@@ -1,15 +1,13 @@
-import React from 'react'
-import { FaBars } from 'react-icons/fa'
+// pages/admin/dashboard.js
 
 const MainHeader = () => {
   return (
-    <div className='bg-white flex h-12 mb-4 justify-between'>
-        <div>Brand</div>
-        <div>
-            <FaBars className=' cursor-pointer'/> 
-        </div>
-    </div>
-  )
-}
+  <>
+      <h1 className="text-2xl font-bold mb-4">Brand</h1>
+      <p>Welcome to the admin dashboard.</p>
+      </>
+  );
+};
 
-export default MainHeader
+export default MainHeader;
+

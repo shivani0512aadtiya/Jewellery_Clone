@@ -1,10 +1,10 @@
 "use client";
 import MainLayout from "@/AdminPenal/MainLayout";
-import UserContext from "@/context/UserContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import UserContext from "@/context/UserContext";
 
 const Page = () => {
   const [imageUpload, setImageUpload] = useState([]);
@@ -22,16 +22,10 @@ const Page = () => {
   const [msg, setMsg] = useState(null);
   const router = useRouter();
 
-
-  const Logout = async () => {
-    await Cookies.remove('token')
-    router.push('/adminlogin');
-  };
-
   useEffect(() => {
     const storedToken = Cookies.get("token");
     if (!storedToken) {
-      console.log("Token Not Found");
+      router.push('/adminlogin')
     } else {
       setToken(storedToken); // Use storedToken to set the state
       console.log(storedToken);
@@ -102,7 +96,6 @@ const Page = () => {
   return (
     <MainLayout>
     <div>
-      <button onClick={Logout}>LogOut</button>
       <div className="p-4 flex justify-center items-center">
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-5xl">
           <h1 className="text-2xl text-center font-bold">Add Product</h1>

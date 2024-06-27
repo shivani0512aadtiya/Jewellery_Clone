@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import axios from "axios";
 import Link from "next/link";
-import React, { FormEvent, useContext, useState } from "react";
+import React, { useState } from "react";
 import { CiUser } from "react-icons/ci";
 import { RiLockPasswordLine } from "react-icons/ri";
 
@@ -34,7 +34,7 @@ const page = () => {
 
   return (
     <>
-    <Header />
+
     <div className="flex justify-center items-center pt-14">
       <div className="relative w-96 h-auto p-14 bg-slate-100 border border-solid">
         <h1 className="text-center font-semibold pb-10 text-xl">User Login</h1>
@@ -75,7 +75,6 @@ const page = () => {
         </p>
       </div>
     </div>
-    <Footer />
     </>
   );
 };

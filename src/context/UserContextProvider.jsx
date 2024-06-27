@@ -7,7 +7,6 @@ const UserContextProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        // const token = localStorage.getItem("token");
         const token = Cookies.get('token')
         setIsLoggedIn(!!token);
     }, []);
