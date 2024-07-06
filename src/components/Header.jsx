@@ -6,22 +6,33 @@ import { FaRegHeart } from "react-icons/fa";
 import { PiShoppingCartSimpleLight } from "react-icons/pi";
 import NavBar from "./NavBar";
 import Link from "next/link";
+import MobileResponsiveNav from "./MobileResponsiveNav";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const routes = useRouter()
+  const [query , setQuery] = useState()
+  const searchData = () =>{
+    alert("Hello")
+    routes.push(`/search/${query}`)
+  }
   return (
     <>
       {/* lg:flex sm:flex-auto */}
-      <div className=" md:flex sm:flex-auto xs:flex-auto  p-4 w-full h-auto  bg-slate-100 justify-around">
+  
+      <div className="md:flex sm:flex-auto xs:flex-auto  p-4 w-full h-auto  bg-slate-100 justify-around">
         <div className="flex md:space-x-12 sm:space-x-8">
           <p className="p-2">Logo</p>
           {/* SearchBar */}
           <div className="w-auto flex shadow border border-slate-200">
             <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
               type="text"
               placeholder="Search for Jwellery, Diamond..."
               className="outline-none p-2 pl-4 lg:w-[900px] md:w-[700px] sm:w-96 rounded-sm"
             />
-            <div className="w-[33px] h-10 pt-3 pl-2 rounded-sm">
+            <div onClick={searchData} className="w-[33px] h-10 pt-3 pl-2 rounded-sm">
               <IoMdSearch size={20} />
             </div>
           </div>
@@ -35,7 +46,9 @@ const Header = () => {
             </div>
             <p className="block">Account</p>
           </Link>
-          <Link href={'/wishlist'}>
+          <Link href={{
+            pathname :'/wishlist'
+          }}>
           <div>
             <div className="pl-4">
               <FaRegHeart size={20} />
@@ -52,7 +65,12 @@ const Header = () => {
           </Link>
         </div>
       </div>
+      <div className="">
       <NavBar />
+      </div>
+      <div>
+      <MobileResponsiveNav />
+      </div>
     </>
   );
 };

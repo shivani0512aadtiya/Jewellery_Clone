@@ -49,16 +49,18 @@ const Page = () => {
       }
       formData.append("price", price?.toString() ?? "");
       formData.append("name", name);
-      formData.append("description", description);
+      
       formData.append("discount", discount);
       formData.append("material", material);
       formData.append("category", category);
       formData.append("gender", gender);
       formData.append("gross_weight", gross_weight);
       formData.append("net_weight", net_weight);
+      formData.append("description", description);
+
   
       const response = await axios.post(
-        "https://jewellery-yttl.onrender.com/addjewellery",
+        "https://je-6z9x.onrender.com/addjewellery",
         formData, {
           onUploadProgress: (ProgressEvent) => {
             setProgress((prevState) => ({

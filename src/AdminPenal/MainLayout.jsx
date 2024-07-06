@@ -70,7 +70,7 @@ const AdminLayout = ({ children }) => {
                   <MdOutlineLooks />
                 </div>
                 <Link href={{
-                       pathname:'wishlist'
+                       pathname:'all-jewellery'
                 }} >
                   All Jewellery
                 </Link>

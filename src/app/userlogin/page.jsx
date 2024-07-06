@@ -15,7 +15,7 @@ const page = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://jewellery-yttl.onrender.com/login",
+        "https://je-6z9x.onrender.com/login",
         {
           email: email,
           password: password,

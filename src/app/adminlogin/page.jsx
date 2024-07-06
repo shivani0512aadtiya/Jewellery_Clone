@@ -19,7 +19,7 @@ const page = () => {
     setIsLoading(true);
   
     try {
-      const response = await axios.post("https://jewellery-yttl.onrender.com/adminlogin", {
+      const response = await axios.post("https://je-6z9x.onrender.com/adminlogin", {
         email: email,
         password: password,
       }, {
