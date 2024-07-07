@@ -1,41 +1,47 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { IoHeartOutline } from "react-icons/io5";
-import axios from "axios";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const page = () => {
   const [jewelleryProduct, setJewelleryProduct] = useState([]);
   const [visible, setVisible] = useState(15);
   const [isLoading, setIsLoading] = useState(false);
 
+  const searchParams = useSearchParams();
+  const search = searchParams.get("search_product");
+
   const router = useRouter();
 
   const seeMoreButtonEvent = () => {
-    setVisible((Prev) => Prev + 15);
+    setVisible((prev) => prev + 15);
   };
 
   const v = "this is product about the mandjghds hdsgzydf bdhg";
 
+  const handleSubmit = async (search) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `https://je-6z9x.onrender.com/search?jewellery=${search}`
+      );
+      const data = await response.json();
+      console.log(data);
+      setJewelleryProduct(Array.isArray(data.jewellery) ? data.jewellery : []);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const handleSubmit = async () => {
-      setIsLoading(true);
-      try {
-        const response = await axios.get("https://je-6z9x.onrender.com/");
-        console.log(response);
-        setJewelleryProduct(
-          Array.isArray(response.data.jewellery) ? response.data.jewellery : []
-        );
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    handleSubmit();
-  }, []);
+    if (search) {
+      handleSubmit(search);
+    }
+  }, [search]);
 
   const handleId = (id) => {
     alert(id);
@@ -67,7 +73,7 @@ const page = () => {
                       height="500"
                     />
                   )}
-                  <div className=" absolute rounded-2xl bg-slate-100 p-1 top-2 left-2 cursor-pointer">
+                  <div className="absolute rounded-2xl bg-slate-100 p-1 top-2 left-2 cursor-pointer">
                     <IoHeartOutline size={20} />
                   </div>
                 </div>

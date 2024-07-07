@@ -7,15 +7,13 @@ import { PiShoppingCartSimpleLight } from "react-icons/pi";
 import NavBar from "./NavBar";
 import Link from "next/link";
 import MobileResponsiveNav from "./MobileResponsiveNav";
-import { useRouter } from "next/navigation";
 
 const Header = () => {
-  const routes = useRouter()
-  const [query , setQuery] = useState()
-  const searchData = () =>{
-    alert("Hello")
-    routes.push(`/search/${query}`)
-  }
+
+  const [query , setQuery] = useState('')
+
+  console.log(query)
+
   return (
     <>
       {/* lg:flex sm:flex-auto */}
@@ -32,8 +30,15 @@ const Header = () => {
               placeholder="Search for Jwellery, Diamond..."
               className="outline-none p-2 pl-4 lg:w-[900px] md:w-[700px] sm:w-96 rounded-sm"
             />
-            <div onClick={searchData} className="w-[33px] h-10 pt-3 pl-2 rounded-sm">
+            <div className="w-[33px] h-10 pt-3 pl-2 rounded-sm">
+              <Link href={{
+                pathname : `/products`,
+                query : {
+                  search_product : `${query}`
+                }
+              }}>
               <IoMdSearch size={20} />
+              </Link>
             </div>
           </div>
         </div>
